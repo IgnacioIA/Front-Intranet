@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
+import styles from './LoginForm.module.css'
 
 interface LoginFormProps {
   submitting: boolean
@@ -17,8 +18,8 @@ export function LoginForm({ submitting, errorMessage, onSubmit }: LoginFormProps
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.field}>
         <label htmlFor="username">Usuario</label>
         <input
           id="username"
@@ -28,7 +29,7 @@ export function LoginForm({ submitting, errorMessage, onSubmit }: LoginFormProps
           required
         />
       </div>
-      <div>
+      <div className={styles.field}>
         <label htmlFor="password">Contraseña</label>
         <input
           id="password"
@@ -39,8 +40,12 @@ export function LoginForm({ submitting, errorMessage, onSubmit }: LoginFormProps
           required
         />
       </div>
-      {errorMessage && <p role="alert">{errorMessage}</p>}
-      <button type="submit" disabled={submitting}>
+      {errorMessage && (
+        <p className={styles.error} role="alert">
+          {errorMessage}
+        </p>
+      )}
+      <button type="submit" className={`btn-primary ${styles.submit}`} disabled={submitting}>
         {submitting ? 'Ingresando…' : 'Ingresar'}
       </button>
     </form>

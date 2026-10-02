@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom'
 import { ApiError } from '../../../shared/http/ApiError'
 import { useSession } from '../session/useSession'
 import { LoginForm } from '../components/LoginForm'
+import { Logo } from '../../../shared/ui/Logo'
+import styles from './LoginPage.module.css'
 
 function describeLoginError(error: unknown): string {
   if (error instanceof ApiError) {
@@ -34,9 +36,13 @@ export function LoginPage() {
   }
 
   return (
-    <main>
-      <h1>Laucom</h1>
-      <LoginForm submitting={submitting} errorMessage={errorMessage} onSubmit={handleSubmit} />
+    <main className={styles.page}>
+      <div className={styles.card}>
+        <Logo className={styles.logo} />
+        <h1 className={styles.title}>Iniciar sesión</h1>
+        <p className={styles.subtitle}>Intranet Laucom</p>
+        <LoginForm submitting={submitting} errorMessage={errorMessage} onSubmit={handleSubmit} />
+      </div>
     </main>
   )
 }
